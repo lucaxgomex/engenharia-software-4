@@ -1,0 +1,44 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Professor {
+  id          Int          @id @default(autoincrement())
+  nome        String
+  email       String       @unique
+  disciplinas Disciplina[] // Relacionamento 1:N com Disciplina
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("professor")
+}
+
+model Aluno {
+  id          Int          @id @default(autoincrement())
+  nome        String
+  email       String       @unique
+  disciplinas Disciplina[] @relation("AlunoDisciplina") // Relacionamento N:M com Disciplina
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("aluno")
+}
+
+model Disciplina {
+  id        Int         @id @default(autoincrement())
+  nome      String
+  professor Professor   @relation(fields: [professorId], references: [id])
+  professorId Int
+
+  alunos    Aluno[]     @relation("AlunoDisciplina") // Relacionamento N:M com Aluno
+
+  @@unique([nome, professorId]) // Garante que um professor não pode ter duas disciplinas com o mesmo nome
+}

@@ -1,0 +1,18 @@
+{
+  "type": "module",
+  "engines": {
+    "node": ">18.0.0"
+  },
+  "scripts": {
+    "dev": "tsx watch src/server.ts"
+  },
+  "devDependencies": {
+    "fastify": "^4.28.1",
+    "prisma": "^5.19.1",
+    "tsx": "^4.19.0",
+    "typescript": "^5.5.4"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.19.1"
+  }
+}
