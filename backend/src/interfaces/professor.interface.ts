@@ -4,7 +4,7 @@ export interface Professor {
     name: string;   
 }
 
-interface ProfessorCreate {
+export interface ProfessorCreate {
     email: string;
     name: string;
 }
