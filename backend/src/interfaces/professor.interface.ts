@@ -1,7 +1,9 @@
 export interface Professor {
-    id: string;
+    id: number;
     email: string;
     name: string;   
+    createdAt: Date;
+    updatedAt: Date;
 }
 
 export interface ProfessorCreate {
@@ -11,4 +13,5 @@ export interface ProfessorCreate {
 
 export interface ProfessorRepository {
     create(data: ProfessorCreate): Promise<Professor>;
+    findByEmail(email: string): Promise<Professor | null>;
 }

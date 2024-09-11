@@ -1,5 +1,4 @@
-import { Professor } from "@prisma/client";
-import { ProfessorCreate, ProfessorRepository } from "../interfaces/professor.interface";
+import { Professor, ProfessorCreate, ProfessorRepository } from "../interfaces/professor.interface";
 import { ProfessorRepositoryPrisma } from "../repositories/professor.repository";
 
 class ProfessorUseCase {
@@ -9,5 +8,19 @@ class ProfessorUseCase {
         this.professorRepository = new ProfessorRepositoryPrisma();
     }
 
-    async create({name, email}: ProfessorCreate): Promise<Professor> {} 
-}
+    async create({name, email}: ProfessorCreate): Promise<Professor> {
+        const verifyIfProfessorExists = await this.professorRepository.findByEmail(email);
+        if (verifyIfProfessorExists) {
+            throw new Error('User alreay exists');
+        }
+
+        const result = await this.professorRepository.create({
+            email, 
+            name
+        });
+
+        return result;
+    } 
+}   
+
+export { ProfessorUseCase };
