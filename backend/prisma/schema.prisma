@@ -12,7 +12,7 @@ datasource db {
 
 model Professor {
   id          Int          @id @default(autoincrement())
-  nome        String
+  name        String
   email       String       @unique
   disciplinas Disciplina[] // Relacionamento 1:N com Disciplina
   createdAt DateTime @default(now())
@@ -23,7 +23,7 @@ model Professor {
 
 model Aluno {
   id          Int          @id @default(autoincrement())
-  nome        String
+  name        String
   email       String       @unique
   disciplinas Disciplina[] @relation("AlunoDisciplina") // Relacionamento N:M com Disciplina
   createdAt DateTime @default(now())
@@ -34,11 +34,11 @@ model Aluno {
 
 model Disciplina {
   id        Int         @id @default(autoincrement())
-  nome      String
+  name      String
   professor Professor   @relation(fields: [professorId], references: [id])
   professorId Int
 
   alunos    Aluno[]     @relation("AlunoDisciplina") // Relacionamento N:M com Aluno
 
-  @@unique([nome, professorId]) // Garante que um professor não pode ter duas disciplinas com o mesmo nome
+  @@unique([name, professorId]) // Garante que um professor não pode ter duas disciplinas com o mesmo nome
 }
