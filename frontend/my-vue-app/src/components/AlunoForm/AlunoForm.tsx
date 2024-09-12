@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Input } from '@/components/ui/input';
 
 interface Aluno {
   nome: string;
@@ -38,6 +39,15 @@ const AlunoForm: React.FC = () => {
         </div>
         <button type="submit">Cadastrar</button>
         <button type="submit">Visualizar</button>
+
+        <div>
+          <Input variant="outline" size="md" isDisabled={false} isInvalid={false} isReadOnly={false} >
+            <InputField
+              placeholder='Enter Text here...'
+            />
+          </Input>
+        </div>
+        
       </form>
     </div>
   );
