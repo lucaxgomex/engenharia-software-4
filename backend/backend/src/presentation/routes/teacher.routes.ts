@@ -7,16 +7,16 @@ export async function teacherRoutes(fastify: FastifyInstance) {
     const teacherUsecase = new TeacherUsecase();
     fastify.post<{Body: createTeacherDTO}>('/', async (req, reply) => {
         const {name, email} = req.body
-
+        console.log(req.body)
         try {
             const data = await teacherUsecase.create({
                 name, 
                 email
             });
+            
             return reply.status(201).send(data)
         } catch (error) {
-            reply.send(error)
-            reply.status(500).send({ error: 'Erro ao cadastrar o professor.' });
+            return reply.send(error).status(500).send({ error: 'Erro ao cadastrar o professor.' })
         }
     })
     
@@ -25,7 +25,7 @@ export async function teacherRoutes(fastify: FastifyInstance) {
             const teachers = await teacherUsecase.findAll();
             return reply.status(200).send(teachers)
         } catch (error) {
-            reply.send(error)
+            return reply.send(error)
         }
     })
     
@@ -38,7 +38,7 @@ export async function teacherRoutes(fastify: FastifyInstance) {
             }
             return reply.status(200).send(teacher)
         } catch (error) {
-            reply.send(error)
+            return reply.send(error)
         }
     })
 
