@@ -1,10 +1,6 @@
-/*
-import { useState } from 'react'
-*/
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-
+//import { fetchProfessores } from './services/api-fetch';
+import { FooterComponent } from './components/FooterComponent/FooterComponent';
+import './App.css';
 
 /*
 import React from 'react';
@@ -17,22 +13,17 @@ import TestTabs from './components/TestTabs/TestTabs';
 
 const App: React.FC = () => {
   return (
-    <div style={{ maxWidth: '600px', margin: '0 auto', padding: '20px' }}>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Sistema de Cadastro</h1>
+    <div style={{ margin: '0 auto', padding: '20px', }}>
+      <h1 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-indig-900">
+        Sistema de Cadastro
+      </h1>
         {/* 
           <ProfessorForm/>
           <AlunoForm/>
           <DisciplinaForm/>
         */}
         <TestTabs/>
+        <FooterComponent/>
     </div>
   );
 };

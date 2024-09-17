@@ -35,6 +35,7 @@ const Tabs: React.FC<TabsProps> = ({ tabs }) => {
               marginRight: '5px',
               cursor: 'pointer',
               borderBottom: activeTabIndex === index ? '2px solid black' : 'none',
+              borderColor: activeTabIndex === index ? 'blueviolet' : 'white'
             }}
           >
             {tab.label}
@@ -60,7 +61,6 @@ const TestTabs: React.FC = () => {
             <DisciplinaForm/>,
             <ProfessorForm/>
           ]
-            //<AlunoForm/>
         },
 
         { label: 'Aluno', 
