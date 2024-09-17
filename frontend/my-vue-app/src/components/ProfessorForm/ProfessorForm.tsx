@@ -37,9 +37,14 @@ const ProfessorForm: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://127.0.0.1:3100/teachers", {
+
+      const response = await axios.post("http://localhost:3100/teachers", {
         name,
         email,
+      }, {
+        headers: {
+          'Access-Control-Allow-Origin' : '*',
+        }
       });
 
       console.log("Professor cadastrado:", response.data);
@@ -73,9 +78,9 @@ const ProfessorForm: React.FC = () => {
                 </div>
                 <div className="mt-2">
                   <input
-                    id="password"
-                    name="password"
-                    type="password"
+                    id="name"
+                    name="name"
+                    type="name"
                     required
                     autoComplete="current-password"
                     className="pl-[15px] block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-10 outline-none"
