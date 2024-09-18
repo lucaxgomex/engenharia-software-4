@@ -1,18 +1,19 @@
 import { Teacher } from "@prisma/client";
-import { TeacherRepository, TeacherRepositoryPrisma } from "../../domain/repositories/teacher.repository";
+import { TeacherRepository } from "../../domain/repository/teacher.repository";
+import { TeacherServices } from "../../services/teacher/teacher.services";
 import { createTeacherDTO } from "../../domain/DTOs/createTeacherDTO.interface";
 
 class TeacherUsecase {
-    private teacherRepository: TeacherRepository
+    private teacherRepository: TeacherRepository;
 
     constructor() {
-        this.teacherRepository = new TeacherRepositoryPrisma();
+        this.teacherRepository = new TeacherServices();
     }
 
     async create(createTeacherDTO: createTeacherDTO): Promise<Teacher> {
         const teacher = await this.teacherRepository.create(createTeacherDTO);
 
-        return teacher
+        return teacher;
     }
 
     async findById(id: number): Promise<Teacher | null> {
@@ -20,7 +21,7 @@ class TeacherUsecase {
     }
 
     async findAll(): Promise<Teacher[] | null> {
-        return await this.teacherRepository.findAll()
+        return await this.teacherRepository.findAll();
     }
 
     async update(id: number, createTeacherDTO: createTeacherDTO): Promise<Teacher | null> {
@@ -32,4 +33,4 @@ class TeacherUsecase {
     }
 }
 
-export{TeacherUsecase}
+export { TeacherUsecase };
