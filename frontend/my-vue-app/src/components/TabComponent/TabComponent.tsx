@@ -52,7 +52,7 @@ const Tabs: React.FC<TabsProps> = ({ tabs }) => {
 };
 
 // Exemplo de uso do componente Tabs
-const TestTabs: React.FC = () => {
+const TabComponent: React.FC = () => {
   return (
     <Tabs
       tabs={[
@@ -72,4 +72,4 @@ const TestTabs: React.FC = () => {
   );
 };
 
-export default TestTabs;
+export default TabComponent;
