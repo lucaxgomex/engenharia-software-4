@@ -2,9 +2,8 @@ import { useState } from 'react';
 import { Dialog, DialogBackdrop, DialogPanel, DialogTitle } from '@headlessui/react';
 import { ExclamationTriangleIcon } from '@heroicons/react/24/outline'
 
-export default function Modal(props: any) {
+export default function Modal() {
   const [open, setOpen] = useState(true);
-  
 
   return (
     <Dialog open={open} onClose={setOpen} className="relative z-10">
@@ -26,12 +25,16 @@ export default function Modal(props: any) {
                 </div>
                 <div className="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
                   <DialogTitle as="h3" className="text-base font-semibold leading-6 text-gray-900">
-                    Deactivate account
+                    Usuário não cadastrado
                   </DialogTitle>
                   <div className="mt-2">
                     <p className="text-sm text-gray-500">
-                      Are you sure you want to deactivate your account? All of your data will be permanently removed.
-                      This action cannot be undone.
+                      <div>
+                        Identificamos que o usuário o qual você está tentando visualizar os dados não encontra-se cadastrado em nossa plataforma.
+                      </div>
+                      <div>
+                        Por gentileza, voltei e realize tal processo.
+                      </div>
                     </p>
                   </div>
                 </div>
@@ -43,7 +46,7 @@ export default function Modal(props: any) {
                 onClick={() => setOpen(false)}
                 className="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto"
               >
-                Deactivate
+                Voltar
               </button>
               <button
                 type="button"
@@ -51,7 +54,7 @@ export default function Modal(props: any) {
                 onClick={() => setOpen(false)}
                 className="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto"
               >
-                Cancel
+                Cancelar
               </button>
             </div>
           </DialogPanel>

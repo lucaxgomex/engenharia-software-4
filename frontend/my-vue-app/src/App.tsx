@@ -9,7 +9,7 @@ import AlunoForm from './components/AlunoForm';
 import DisciplinaForm from './components/DisciplinaForm';
 */
 
-import TestTabs from './components/TestTabs/TestTabs';
+import TabComponent from './components/TabComponent/TabComponent';
 
 const App: React.FC = () => {
   return (
@@ -22,7 +22,7 @@ const App: React.FC = () => {
           <AlunoForm/>
           <DisciplinaForm/>
         */}
-        <TestTabs/>
+        <TabComponent/>
         <FooterComponent/>
     </div>
   );
