@@ -1,10 +1,10 @@
 import { FastifyInstance } from "fastify";
 import { TeacherUsecase } from "../../application/usecases/teacher.usecase";
 import { createTeacherDTO } from "../../domain/DTOs/createTeacherDTO.interface";
-import { createStudentDTO } from "../../domain/DTOs/createStudentDTO.interface";
 
 export async function teacherRoutes(fastify: FastifyInstance) {
     const teacherUsecase = new TeacherUsecase();
+    
     fastify.post<{Body: createTeacherDTO}>('/', async (req, reply) => {
         const {name, email} = req.body
         console.log(req.body)
@@ -13,19 +13,23 @@ export async function teacherRoutes(fastify: FastifyInstance) {
                 name, 
                 email
             });
-            
-            return reply.status(201).send(data)
+            return reply.status(201).send(data);
         } catch (error) {
             return reply.send(error).status(500).send({ error: 'Erro ao cadastrar o professor.' })
         }
     })
+    
+    fastify.get('/test', async (req, reply) => {
+        reply.send({
+             hello: 'world',
+        });
+     })
     
     fastify.get('/', async (req, reply) => {
         try {
             const teachers = await teacherUsecase.findAll();
             return reply.status(200).send(teachers)
         } catch (error) {
-            console.log('IIIH SE FUDEU NAO TA FUNCIONANDO');
             return reply.send(error)
         }
     })
@@ -72,12 +76,6 @@ export async function teacherRoutes(fastify: FastifyInstance) {
         } catch (error) {
             return reply.send(error)
         }
-    })
-
-    fastify.get('/test', async (req, reply) => {
-       reply.send({
-            hello: 'world',
-       });
     })
 }
 

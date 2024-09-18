@@ -16,6 +16,15 @@ export async function studentRoutes(fastify: FastifyInstance) {
         }
     });
 
+    fastify.get('/', async (req, reply) => {
+        try {
+            const students = await studentUsecase.findAll();
+            return reply.status(200).send(students);
+        } catch (error) {
+            return reply.send(error);
+        }
+    });
+
     fastify.get<{ Params: { id: number } }>('/:id', async (req, reply) => {
         const { id } = req.params;
 
@@ -27,15 +36,6 @@ export async function studentRoutes(fastify: FastifyInstance) {
             return reply.status(200).send(student);
         } catch (error) {
             reply.send(error)
-        }
-    });
-
-    fastify.get('/', async (req, reply) => {
-        try {
-            const students = await studentUsecase.findAll();
-            return reply.status(200).send(students);
-        } catch (error) {
-            return reply.send(error)
         }
     });
 
