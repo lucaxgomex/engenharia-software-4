@@ -25,6 +25,7 @@ export async function teacherRoutes(fastify: FastifyInstance) {
             const teachers = await teacherUsecase.findAll();
             return reply.status(200).send(teachers)
         } catch (error) {
+            console.log('IIIH SE FUDEU NAO TA FUNCIONANDO');
             return reply.send(error)
         }
     })
@@ -76,7 +77,6 @@ export async function teacherRoutes(fastify: FastifyInstance) {
     fastify.get('/test', async (req, reply) => {
        reply.send({
             hello: 'world',
-
        });
     })
 }
