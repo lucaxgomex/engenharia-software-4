@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Modal from '../Modal/Modal';
 import vitLogo from '../../img/vite.svg';
 
 interface Aluno {
@@ -8,6 +9,14 @@ interface Aluno {
 
 
 const AlunoForm: React.FC = () => {
+  // Estado que controla se o componente deve ou não ser exibido
+  const [showComponent, setShowComponent] = useState<boolean>(false);
+
+  // Função que será chamada ao clicar no botão
+  const handleButtonClick = () => {
+    setShowComponent(true); // Muda o estado para true, exibindo o componente
+  };
+
   const [aluno, setAluno] = useState<Aluno>({
     nome: '',
     email: '',
@@ -50,9 +59,9 @@ const AlunoForm: React.FC = () => {
                 </div>
                 <div className="mt-2">
                   <input
-                    id="password"
-                    name="password"
-                    type="password"
+                    id="name"
+                    name="name"
+                    type="name"
                     required
                     autoComplete="current-password"
                     className="pl-[15px] block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-10 outline-none"
@@ -92,9 +101,12 @@ const AlunoForm: React.FC = () => {
                 <button
                   type="submit"
                   className="flex justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                  onClick={handleButtonClick}
                 >
                   Visualizar
                 </button>
+
+                { showComponent && <Modal/> }
               </div>
 
             </form>
