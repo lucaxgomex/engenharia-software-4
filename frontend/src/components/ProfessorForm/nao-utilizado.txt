@@ -1,0 +1,57 @@
+interface Professor {
+  nome: string;
+  email: string;
+  idade: number;
+}
+
+  
+  const [professor, setProfessor] = useState<Professor>({
+    nome: '',
+    email: '',
+    idade: 0,
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setProfessor({
+      ...professor,
+      [name]: name === 'idade' ? parseInt(value) : value,
+    });
+  };
+
+  /*
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log('Professor cadastrado:', professor);
+  };
+  */
+  
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+
+  // Função para lidar com o envio do formulário
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    try {
+
+      const response = await axios.post("http://localhost:3100/teachers", {
+        name,
+        email,
+      }, {
+        headers: {
+          'Access-Control-Allow-Origin' : '*',
+        }
+      });
+
+      console.log("Professor cadastrado:", response.data);
+      alert("Professor cadastrado com sucesso!");
+
+      // Limpar os campos do formulário após o envio
+      setName("");
+      setEmail("");
+    } catch (error) {
+      console.error("Erro ao cadastrar o professor:", error);
+      alert("Erro ao cadastrar o professor.");
+    }
+  };
+

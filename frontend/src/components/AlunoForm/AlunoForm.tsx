@@ -7,14 +7,11 @@ interface Aluno {
   email: string;
 }
 
-
 const AlunoForm: React.FC = () => {
-  // Estado que controla se o componente deve ou não ser exibido
   const [showComponent, setShowComponent] = useState<boolean>(false);
 
-  // Função que será chamada ao clicar no botão
   const handleButtonClick = () => {
-    setShowComponent(true); // Muda o estado para true, exibindo o componente
+    setShowComponent(true);
   };
 
   const [aluno, setAluno] = useState<Aluno>({
