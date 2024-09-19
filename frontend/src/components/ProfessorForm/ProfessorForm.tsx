@@ -1,8 +1,14 @@
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import React, { useState } from 'react';
-import ModalError from '../Modal/ModalError';
 
 const ProfessorForm: React.FC = () => {
+  let navigate = useNavigate(); 
+  const routeChange = () => { 
+    let path = `list/teachers`; 
+    navigate(path);
+  }
+
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
 
@@ -21,8 +27,7 @@ const ProfessorForm: React.FC = () => {
       setName("");
       setEmail("")
     }  catch (error) {
-      //window.alert(error);
-      <ModalError prop={ error }/>
+      window.alert(error);
     }
   }
 
@@ -78,9 +83,17 @@ const ProfessorForm: React.FC = () => {
               <div className="flex items-center justify-between">
                 <button
                   type="submit"
-                  className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                  className="flex justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                 >
                   Cadastrar
+                </button>
+
+                <button
+                  type="submit"
+                  className="flex justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                  onClick={ routeChange }
+                >
+                  Visualizar
                 </button>
               </div>
 
