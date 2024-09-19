@@ -1,13 +1,12 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-
-function ListAlunosComponent() {
+export default function ListProfessoresComponent() {
     const [users, setUsers] = useState([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        axios.get('https:127.0.0.1:3100/teachers/get-info')
+        axios.get('https:127.0.0.1:3100/teachers')
         .then(response => {
           setUsers(response.data);
           setLoading(false);
@@ -26,12 +25,9 @@ function ListAlunosComponent() {
         <div>
             <h1>Lista de Alunos</h1>
             <ul>
-                { users.map(users => (
-                    <li> {users} </li>
-                )) }
+                { users }
             </ul>
         </div>
     );
 }
 
-export default ListAlunosComponent;
