@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Modal from '../Modal/Modal';
 import vitLogo from '../../img/vite.svg';
+import { SelectComponent } from '../SelectComponent/SelectComponent';
 
 interface Aluno {
   nome: string;
@@ -85,6 +86,7 @@ const AlunoForm: React.FC = () => {
                   />
                 </div>
               </div>
+              <SelectComponent />
 
               <div className="flex items-center justify-between">
                 <button
@@ -94,7 +96,6 @@ const AlunoForm: React.FC = () => {
                   Cadastrar
                 </button>
                 
-
                 <button
                   type="submit"
                   className="flex justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
@@ -103,9 +104,10 @@ const AlunoForm: React.FC = () => {
                   Visualizar
                 </button>
 
-                { showComponent && <Modal/> }
-              </div>
 
+                { showComponent && <Modal/> }
+
+              </div>
             </form>
           </div>
         </div>
