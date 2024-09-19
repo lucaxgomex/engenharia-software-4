@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useState } from 'react';
+import ModalError from '../Modal/ModalError';
 
 const ProfessorForm: React.FC = () => {
   const [name, setName] = useState("");
@@ -20,7 +21,8 @@ const ProfessorForm: React.FC = () => {
       setName("");
       setEmail("")
     }  catch (error) {
-      window.alert(error);
+      //window.alert(error);
+      <ModalError prop={ error }/>
     }
   }
 
