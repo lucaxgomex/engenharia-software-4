@@ -1,63 +1,28 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 
-interface Professor {
-  nome: string;
-  email: string;
-  idade: number;
-}
-
 const ProfessorForm: React.FC = () => {
-  
-  const [professor, setProfessor] = useState<Professor>({
-    nome: '',
-    email: '',
-    idade: 0,
-  });
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setProfessor({
-      ...professor,
-      [name]: name === 'idade' ? parseInt(value) : value,
-    });
-  };
-
-  /*
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    console.log('Professor cadastrado:', professor);
-  };
-  */
-  
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
 
-  // Função para lidar com o envio do formulário
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    try {
 
+    try {
       const response = await axios.post("http://localhost:3100/teachers", {
         name,
-        email,
-      }, {
-        headers: {
-          'Access-Control-Allow-Origin' : '*',
-        }
+        email
       });
-
+      
       console.log("Professor cadastrado:", response.data);
-      alert("Professor cadastrado com sucesso!");
+      window.alert("Professor cadastrador com sucesso!");
 
-      // Limpar os campos do formulário após o envio
       setName("");
-      setEmail("");
-    } catch (error) {
-      console.error("Erro ao cadastrar o professor:", error);
-      alert("Erro ao cadastrar o professor.");
+      setEmail("")
+    }  catch (error) {
+      window.alert(error);
     }
-  };
+  }
 
   return (
     <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
@@ -85,7 +50,7 @@ const ProfessorForm: React.FC = () => {
                     autoComplete="current-password"
                     className="pl-[15px] block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-10 outline-none"
                     placeholder='Adicione seu nome'
-                    onChange={handleChange}
+                  
                   />
                 </div>
               </div>
@@ -103,7 +68,7 @@ const ProfessorForm: React.FC = () => {
                     autoComplete="email"
                     className="pl-[15px] block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-10 outline-none"
                     placeholder="Adicione seu e-mail"
-                    onChange={handleChange}
+                    
                   />
                 </div>
               </div>
