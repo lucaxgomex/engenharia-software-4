@@ -1,7 +1,7 @@
-import { prisma } from "../../infra/database/prisma-client";
+import { prisma } from "../../database/prisma-client";
 import { Student } from "@prisma/client";
 import { StudentRepository } from "../../domain/repository/student.repository";
-import { createStudentDTO } from "../../domain/DTOs/createStudentDTO.interface";
+import { createStudentDTO } from "../../domain/implementation/createStudentDTO.interface";
 
 class StudentServices implements StudentRepository {
     async create(student: createStudentDTO): Promise<Student> {

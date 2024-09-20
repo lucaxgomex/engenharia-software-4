@@ -1,5 +1,5 @@
 import { Student } from "@prisma/client";
-import { createStudentDTO } from "../DTOs/createStudentDTO.interface";
+import { createStudentDTO } from "../implementation/createStudentDTO.interface";
 
 export interface StudentRepository {
     create(student: createStudentDTO): Promise<Student>;

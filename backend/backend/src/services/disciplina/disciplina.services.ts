@@ -1,4 +1,4 @@
-import { prisma } from "../../infra/database/prisma-client";
+import { prisma } from "../../database/prisma-client";
 import { DisciplinaRepository } from "../../domain/repository/disciplina.repository";
 
 class DisciplinaServices implements DisciplinaRepository {

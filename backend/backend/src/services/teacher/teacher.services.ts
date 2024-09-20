@@ -1,6 +1,6 @@
 import { Teacher } from "@prisma/client";
-import { prisma } from "../../infra/database/prisma-client";
-import { createTeacherDTO } from "../../domain/DTOs/createTeacherDTO.interface";
+import { prisma } from "../../database/prisma-client";
+import { createTeacherDTO } from "../../domain/implementation/createTeacherDTO.interface";
 import { TeacherRepository } from "../../domain/repository/teacher.repository";
 
 class TeacherServices implements TeacherRepository {
