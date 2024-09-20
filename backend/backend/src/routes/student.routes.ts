@@ -1,8 +1,8 @@
 import { FastifyInstance } from "fastify";
-import { StudentUsecase } from "../../application/usecases/student.usecase";
-import { createStudentDTO } from "../../domain/DTOs/createStudentDTO.interface";
+import { StudentUsecase } from "../usecases/student.usecase";
+import { createStudentDTO } from "../domain/implementation/createStudentDTO.interface";
 
-export async function studentRoutes(fastify: FastifyInstance) {
+export async function alunoRoutes(fastify: FastifyInstance) {
     const studentUsecase = new StudentUsecase();
 
     fastify.post<{ Body: createStudentDTO }>('/', async (req, reply) => {
@@ -13,6 +13,15 @@ export async function studentRoutes(fastify: FastifyInstance) {
             return reply.status(201).send(student);
         } catch (error) {
             reply.send(error)
+        }
+    });
+
+    fastify.get('/', async (req, reply) => {
+        try {
+            const students = await studentUsecase.findAll();
+            return reply.status(200).send(students);
+        } catch (error) {
+            return reply.send(error);
         }
     });
 
@@ -27,15 +36,6 @@ export async function studentRoutes(fastify: FastifyInstance) {
             return reply.status(200).send(student);
         } catch (error) {
             reply.send(error)
-        }
-    });
-
-    fastify.get('/', async (req, reply) => {
-        try {
-            const students = await studentUsecase.findAll();
-            return reply.status(200).send(students);
-        } catch (error) {
-            return reply.send(error)
         }
     });
 

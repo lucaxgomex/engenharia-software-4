@@ -1,16 +1,9 @@
+import { prisma } from "../../database/prisma-client";
 import { Student } from "@prisma/client";
-import { createStudentDTO } from "../DTOs/createStudentDTO.interface";
-import { prisma } from "../../infra/database/prisma-client";
+import { StudentRepository } from "../../domain/repository/student.repository";
+import { createStudentDTO } from "../../domain/implementation/createStudentDTO.interface";
 
-export interface StudentRepository {
-    create(student: createStudentDTO): Promise<Student>
-    findById(id: number): Promise<Student | null>
-    findAll(): Promise<Student[] | null>
-    update(id: number, student: createStudentDTO): Promise<Student | null> 
-    delete(id: number): Promise<Student | null>
-}
-
-export class StudentRepositoryPrisma implements StudentRepository {
+class StudentServices implements StudentRepository {
     async create(student: createStudentDTO): Promise<Student> {
         const result = await prisma.student.create({
             data: {
@@ -54,3 +47,5 @@ export class StudentRepositoryPrisma implements StudentRepository {
         }).catch(() => null); 
     }
 }
+
+export { StudentServices };

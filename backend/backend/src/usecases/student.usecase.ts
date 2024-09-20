@@ -1,18 +1,19 @@
-import { createStudentDTO } from "../../domain/DTOs/createStudentDTO.interface";
-import { Student } from "../../domain/entities/student.interface";
-import { StudentRepository, StudentRepositoryPrisma } from "../../domain/repositories/student.repository";
+import { createStudentDTO } from "../domain/implementation/createStudentDTO.interface";
+import { Student } from "../domain/interface/student.interface";
+import { StudentRepository } from "../domain/repository/student.repository";
+import { StudentServices } from "../services/student/student.services";
 
 class StudentUsecase {
     private studentRepository: StudentRepository
 
     constructor() {
-        this.studentRepository = new StudentRepositoryPrisma();
+        this.studentRepository = new StudentServices();
     }
 
     async create(createStudentDTO: createStudentDTO): Promise<Student> {
         const student = await this.studentRepository.create(createStudentDTO);
 
-        return student
+        return student;
     }
 
     async findById(id: number): Promise<Student | null> {
@@ -26,7 +27,7 @@ class StudentUsecase {
     }
 
     async findAll(): Promise<Student[] | null> {
-        return await this.studentRepository.findAll()
+        return await this.studentRepository.findAll();
     }
 
     async update(id: number, createStudentDTO: createStudentDTO): Promise<Student | null> {
@@ -38,4 +39,4 @@ class StudentUsecase {
     }
 }
 
-export{StudentUsecase}
+export { StudentUsecase };

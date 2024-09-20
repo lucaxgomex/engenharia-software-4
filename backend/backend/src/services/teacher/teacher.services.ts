@@ -1,16 +1,10 @@
 import { Teacher } from "@prisma/client";
-import { createTeacherDTO } from "../DTOs/createTeacherDTO.interface";
-import { prisma } from "../../infra/database/prisma-client";
+import { prisma } from "../../database/prisma-client";
+import { createTeacherDTO } from "../../domain/implementation/createTeacherDTO.interface";
+import { TeacherRepository } from "../../domain/repository/teacher.repository";
 
-interface TeacherRepository {
-    create(teacher: createTeacherDTO): Promise<Teacher>
-    findById(id: number): Promise<Teacher | null>
-    findAll(): Promise<Teacher[] | null>
-    update(id: number, teacher: createTeacherDTO): Promise<Teacher | null>
-    delete(id: number): Promise<Teacher | null> 
-}
+class TeacherServices implements TeacherRepository {
 
-class TeacherRepositoryPrisma implements TeacherRepository {
     async findById(id: number): Promise<Teacher | null> {
         const result = await prisma.teacher.findUnique({
             where: { id }
@@ -22,19 +16,20 @@ class TeacherRepositoryPrisma implements TeacherRepository {
 
         return result;
     }
+    
     async create(teacher: createTeacherDTO): Promise<Teacher> {
         const result = await prisma.teacher.create({
             data: {
                 email: teacher.email,
                 name: teacher.name
             }
-        })
+        });
 
         return result;
     }
 
     async findAll(): Promise<Teacher[] | null> {
-        return await prisma.teacher.findMany()
+        return await prisma.teacher.findMany();
     }
 
     async update(id: number, teacher: createTeacherDTO): Promise<Teacher | null> {
@@ -55,4 +50,4 @@ class TeacherRepositoryPrisma implements TeacherRepository {
 
 }
 
-export {TeacherRepository, TeacherRepositoryPrisma}
+export { TeacherServices };

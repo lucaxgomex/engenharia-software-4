@@ -15,6 +15,8 @@ model Teacher {
   name     String
   email    String    @unique
   subjects Subject[] @relation("TeacherSubjects")
+
+  @@map("professor")
 }
 
 model Student {
@@ -22,14 +24,18 @@ model Student {
   name     String
   email    String           @unique
   subjects StudentSubject[]
+
+  @@map("aluno")
 }
 
 model Subject {
   id        Int              @id @default(autoincrement())
   name      String
   teacher   Teacher          @relation("TeacherSubjects", fields: [teacherId], references: [id])
-  teacherId Int
+  teacherId Int              @unique
   students  StudentSubject[]
+
+  @@map("disciplina")
 }
 
 model StudentSubject {
