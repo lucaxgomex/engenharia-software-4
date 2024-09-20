@@ -1,7 +1,7 @@
 import fastify, { FastifyInstance } from "fastify";
 import cors from "@fastify/cors";   
-import { teacherRoutes } from "./routes/teacher.routes";
-import { studentRoutes } from "./routes/student.routes";
+import { professorRoutes } from "./routes/teacher.routes";
+import { alunoRoutes } from "./routes/student.routes";
 import { disciplinaRoutes } from "./routes/disciplina.routes";
 
 const app: FastifyInstance = fastify({ logger: true });
@@ -13,12 +13,12 @@ app.register(
     }
 );
 
-app.register(teacherRoutes, {
-    prefix: "/teachers"
+app.register(professorRoutes, {
+    prefix: "/professores"
 });
 
-app.register(studentRoutes, {
-    prefix: "/students"
+app.register(alunoRoutes, {
+    prefix: "/alunos"
 });
 
 app.register(disciplinaRoutes, {

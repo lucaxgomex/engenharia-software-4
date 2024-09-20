@@ -1,8 +1,8 @@
 import { FastifyInstance } from "fastify";
-import { StudentUsecase } from "../../application/usecases/student.usecase";
-import { createStudentDTO } from "../../domain/DTOs/createStudentDTO.interface";
+import { StudentUsecase } from "../usecases/student.usecase";
+import { createStudentDTO } from "../domain/implementation/createStudentDTO.interface";
 
-export async function studentRoutes(fastify: FastifyInstance) {
+export async function alunoRoutes(fastify: FastifyInstance) {
     const studentUsecase = new StudentUsecase();
 
     fastify.post<{ Body: createStudentDTO }>('/', async (req, reply) => {

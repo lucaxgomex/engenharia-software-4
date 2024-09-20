@@ -1,5 +1,5 @@
 import { FastifyInstance } from "fastify";
-import { prisma } from "../../infra/database/prisma-client";
+import { prisma } from "../database/prisma-client";
 
 export async function disciplinaRoutes(fastify: FastifyInstance) {
     fastify.get('/', async(request, reply)=> {
