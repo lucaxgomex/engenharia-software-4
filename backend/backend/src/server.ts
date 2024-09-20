@@ -1,13 +1,11 @@
 import fastify, { FastifyInstance } from "fastify";
 import cors from "@fastify/cors";   
-import { teacherRoutes } from "./presentation/routes/teacher.routes";
-import { studentRoutes } from "./presentation/routes/student.routes";
-import { disciplinaRoutes } from "./presentation/routes/disciplina.routes";
-
+import { teacherRoutes } from "./routes/teacher.routes";
+import { studentRoutes } from "./routes/student.routes";
+import { disciplinaRoutes } from "./routes/disciplina.routes";
 
 const app: FastifyInstance = fastify({ logger: true });
 
-// Configurando CORS para permitir requisições de um frontend React
 app.register(
     cors, 
     {
