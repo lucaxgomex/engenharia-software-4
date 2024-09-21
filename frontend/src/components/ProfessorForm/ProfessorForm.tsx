@@ -3,7 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import React, { useState } from 'react';
 
 const ProfessorForm: React.FC = () => {
+  
   let navigate = useNavigate(); 
+
   const routeChange = () => { 
     let path = `list/teachers`; 
     navigate(path);
