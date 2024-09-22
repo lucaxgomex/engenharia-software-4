@@ -2,7 +2,7 @@ import Select, { Props } from "react-select";
 
 const sampleOptions = [
   {
-    label: "Prof. Duanny",
+    label: "Prof. Duany Dreyton",
     options: [
       {
         label: "Engenharia de Software",
