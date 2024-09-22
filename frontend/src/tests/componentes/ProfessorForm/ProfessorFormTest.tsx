@@ -1,4 +1,4 @@
-import axios from 'axios';
+//import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import React, { useState } from 'react';
 
@@ -17,6 +17,8 @@ const ProfessorFormTest: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
+    window.alert(email);
+    /*
     try {
       const response = await axios.post("http://localhost:3100/teachers", {
         name,
@@ -31,6 +33,7 @@ const ProfessorFormTest: React.FC = () => {
     }  catch (error) {
       window.alert(error);
     }
+    */
   }
 
   // Testing function
@@ -52,7 +55,7 @@ const ProfessorFormTest: React.FC = () => {
       </div>
   
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-        <form /*onSubmit={handleSubmit}*/ onSubmit={ cadastrarUsuario } action="#" method="POST" className="space-y-6">
+        <form /*onSubmit={handleSubmit}*/ onSubmit={ handleSubmit } action="#" method="POST" className="space-y-6">
 
           <div>
             <div className="flex items-center justify-between">
@@ -65,11 +68,13 @@ const ProfessorFormTest: React.FC = () => {
                 id="nameTest"
                 name="nameTest"
                 type="nameTest"
-                required
+                //required
                 autoComplete="current-password"
                 className="pl-[15px] block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-10 outline-none"
                 placeholder='Adicione seu nome'
-                onChange={(e) => setNameTest(e.target.value)}
+                onChange={
+                  (e) => setName(e.target.value.toString())
+                }
               />
             </div>
           </div>
@@ -87,7 +92,9 @@ const ProfessorFormTest: React.FC = () => {
                 autoComplete="email"
                 className="pl-[15px] block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-10 outline-none"
                 placeholder="Adicione seu e-mail"
-                
+                onChange={
+                  (e) => setEmail(e.target.value.toString())
+                }
               />
             </div>
           </div>
