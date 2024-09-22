@@ -6,7 +6,7 @@ const ListProfessoresComponent: React.FC = () => {
     const [users, setUsers] = useState<Professor[]>([]);
 
     useEffect(() => {
-        axios.get('https:127.0.0.1:3100/teachers')
+        axios.get('http://127.0.0.1:3100/professores')
         .then(response => {
           setUsers(response.data);
         })
