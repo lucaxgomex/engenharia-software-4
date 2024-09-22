@@ -18,7 +18,7 @@ const ProfessorForm: React.FC = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post("http://localhost:3100/teachers", {
+      const response = await axios.post("http://localhost:3100/professores", {
         name,
         email
       });
