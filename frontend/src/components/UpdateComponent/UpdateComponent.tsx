@@ -8,7 +8,7 @@ const UpdateUserForm: React.FC<{ userId: number }> = ({ userId }) => {
   const handleUpdate = async (event: React.FormEvent) => {
     event.preventDefault();
     try {
-      const response = await axios.put(`http://localhost:3000/users/${userId}`, {
+      const response = await axios.put(`http://localhost:3100/professores/${userId}`, {
         name,
         email,
       });
