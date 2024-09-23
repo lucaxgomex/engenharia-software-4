@@ -103,10 +103,7 @@ const AlunoForm: React.FC = () => {
                 >
                   Visualizar
                 </button>
-
-
                 { showComponent && <Modal/> }
-
               </div>
             </form>
           </div>

@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import AlunoForm from '../AlunoForm/AlunoForm';
 import DisciplinaForm from '../DisciplinaForm/DisciplinaForm';
 import ProfessorForm from '../ProfessorForm/ProfessorForm';
-import ListTestComponent from '../ListTestComponent/ListTestComponent';
 
 // Tipos para as abas
 type Tab = {
@@ -60,8 +59,7 @@ const TabComponent: React.FC = () => {
         { label: 'Professor', 
           content: [
             <DisciplinaForm/>,
-            <ProfessorForm/>,
-            <ListTestComponent/>
+            <ProfessorForm/>
           ]
         },
 
