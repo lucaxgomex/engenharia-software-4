@@ -1,7 +1,5 @@
 import profile from '../../img/favicon/favicon-32x32.png';
  
-//<ul className="max-w-md divide-y divide-gray-200 dark:divide-gray-700">
-
 const ListTestComponent: React.FC = () => {
     return (
         <ul className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
