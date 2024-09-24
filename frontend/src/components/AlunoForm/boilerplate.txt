@@ -1,0 +1,23 @@
+const [showComponent, setShowComponent] = useState<boolean>(false);
+
+  const handleButtonClick = () => {
+    setShowComponent(true);
+  };
+
+  const [aluno, setAluno] = useState<Aluno>({
+    nome: '',
+    email: '',
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setAluno({
+      ...aluno,
+      [name]: value,
+    });
+  };
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log('Aluno cadastrado:', aluno);
+  };
