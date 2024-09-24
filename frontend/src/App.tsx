@@ -9,6 +9,7 @@ const App: React.FC = () => {
       <Routes>
         <Route path="/" element={<Home/>}/>
         <Route path="list/teachers" element={<ListProfessoresComponent/>}/>
+        <Route path="list/students" element={<ListAlunosComponent/>}/>
         <Route path="*" element={<Error404/>}/>
       </Routes>
     </BrowserRouter>
