@@ -29,7 +29,7 @@ const ListAlunosComponent: React.FC = () => {
           // Atualizar a lista de usuários
           setUsers(users.filter(user => user.id !== userId));
         } catch (error) {
-          window.alert(error    );
+          window.alert(error);
         }
       };
 
