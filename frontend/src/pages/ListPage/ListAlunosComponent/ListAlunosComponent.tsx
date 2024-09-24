@@ -25,7 +25,7 @@ const ListAlunosComponent: React.FC = () => {
 
     const handleDeleteClick = async (userId: number) => {
         try {
-          await axios.delete(`http://localhost:3100//alunos/${userId}`);
+          await axios.delete(`http://localhost:3100/alunos/${userId}`);
           // Atualizar a lista de usuários
           setUsers(users.filter(user => user.id !== userId));
         } catch (error) {
