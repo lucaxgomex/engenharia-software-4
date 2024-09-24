@@ -1,37 +1,45 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import Modal from '../Modal/Modal';
 import vitLogo from '../../img/vite.svg';
 import { SelectComponent } from '../SelectComponent/SelectComponent';
 
-interface Aluno {
-  nome: string;
-  email: string;
-}
-
 const AlunoForm: React.FC = () => {
+  let navigate = useNavigate();
+
+  const routeChange = () => {
+    let path = `list/students`;
+    navigate(path);
+  }
+
   const [showComponent, setShowComponent] = useState<boolean>(false);
 
   const handleButtonClick = () => {
     setShowComponent(true);
   };
 
-  const [aluno, setAluno] = useState<Aluno>({
-    nome: '',
-    email: '',
-  });
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setAluno({
-      ...aluno,
-      [name]: value,
-    });
-  };
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Aluno cadastrado:', aluno);
-  };
+
+    try {
+      const response = await axios.post("http://localhost:3100/alunos", {
+        name,
+        email
+      });
+      
+      console.log("Aluno cadastrado:", response.data);
+      window.alert("Aluno cadastrado com sucesso!");
+
+      setName("");
+      setEmail("")
+    }  catch (error) {
+      window.alert(error);
+    }
+  }
 
   return (
     <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
@@ -64,7 +72,9 @@ const AlunoForm: React.FC = () => {
                     autoComplete="current-password"
                     className="pl-[15px] block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-10 outline-none"
                     placeholder='Adicione seu nome'
-                    onChange={handleChange}
+                    onChange={
+                      (e) => setName(e.target.value)
+                    }
                   />
                 </div>
               </div>
@@ -82,7 +92,9 @@ const AlunoForm: React.FC = () => {
                     autoComplete="email"
                     className="pl-[15px] block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-10 outline-none"
                     placeholder="Adicione seu e-mail"
-                    onChange={handleChange}
+                    onChange={
+                      (e) => setEmail(e.target.value)
+                    }
                   />
                 </div>
               </div>
@@ -99,11 +111,20 @@ const AlunoForm: React.FC = () => {
                 <button
                   type="submit"
                   className="flex justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                  onClick={handleButtonClick}
+                  //onClick={ handleButtonClick }
+                  onClick={
+                    () => {
+                      if (showComponent) {
+                        handleButtonClick();
+                        { showComponent && <Modal/> }
+                      } else {
+                        routeChange();
+                      }
+                    }
+                  }
                 >
                   Visualizar
                 </button>
-                { showComponent && <Modal/> }
               </div>
             </form>
           </div>

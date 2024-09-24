@@ -24,7 +24,7 @@ const ProfessorForm: React.FC = () => {
       });
       
       console.log("Professor cadastrado:", response.data);
-      window.alert("Professor cadastrador com sucesso!");
+      window.alert("Professor cadastrado com sucesso!");
 
       setName("");
       setEmail("")
